@@ -8,9 +8,8 @@ To implement  JK flipflop using verilog and validating their functionality using
 
 Quartus prime
 
-**THEORY**
 
-**JK Flip-Flop**
+**JK Flip-Flop:**
 
 JK flip-flop is the modified version of SR flip-flop. It operates with only positive clock transitions or negative clock transitions. The circuit diagram of JK flip-flop is shown in the following figure.
 
@@ -32,17 +31,72 @@ By using three variable K-Map, we can get the simplified expression for next sta
 
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=JQ(t)′+K′Q(t)Q(t+1)=JQ(t)′+K′Q(t)
 
-**Procedure**
+**Procedure:**
+Open Quartus Prime and create a new Verilog project.
 
-/* write all the steps invloved */
+Write the Verilog code for the JK flip-flop.
 
-**PROGRAM**
+Compile the project to check for errors.
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+Generate the RTL schematic to verify the correct logic design.
 
-**RTL LOGIC FOR FLIPFLOPS**
+Create a testbench to simulate the functionality of the JK flip-flop.
 
-**TIMING DIGRAMS FOR FLIP FLOPS**
+Apply various input combinations for J and K.
 
-**RESULTS**
+Observe the next state Q(t+1) based on the characteristic table.
+
+Generate the timing diagram to verify the behavior of the flip-flop with respect to the clock signal.
+
+Validate the simulation results against the functional table.
+
+**PROGRAM:**
+```
+module exp3 (q, qb,j,k,clock,reset);
+    input j,k,clock,reset;
+    output reg q, qb;
+	 
+always @ (posedge (clock))
+
+    begin 
+        if (!reset)
+            begin
+               q <= q;
+               qb <=qb;
+            end   
+        
+else
+ //Write logic for JK flipflop using if else statement for four conditions
+
+begin
+               if (j == 0 && k == 0)
+                    begin
+                    q <= q;
+                    qb <= qb;
+                    end 
+		else if (j != k)
+                    begin
+                    q <= j;
+                    qb <= k;
+                    end
+               else if (j == 1 && k == 1) 
+                    begin 
+                    q <= ~q; 
+                    qb <= ~qb; 
+                    end 
+            end
+end  
+endmodule
+```
+
+**RTL LOGIC FOR FLIPFLOPS:**
+<img width="1920" height="1080" alt="Screenshot (83)" src="https://github.com/user-attachments/assets/a4c50f30-a702-4540-932e-29d9b1cad001" />
+
+
+
+**TIMING DIGRAMS FOR FLIP FLOPS:**
+<img width="1920" height="1080" alt="Screenshot (84)" src="https://github.com/user-attachments/assets/484a9ef9-8b4a-4e25-a5c3-68deb4c1ae25" />
+
+
+**RESULTS:**
+The JK flip-flop was successfully implemented in Verilog, and its functionality was validated using the truth table and timing diagrams. The output correctly responds to all input combinations, including toggling when J = 1 and K = 1.
